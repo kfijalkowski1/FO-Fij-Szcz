@@ -2,11 +2,11 @@ import sys
 import numpy as np
 import matplotlib
 
-from phisics_functions import GENERATOR_MAP
+from phisics_functions import GENERATOR_MAP  # Ensure GENERATOR_MAP is properly imported
 
 matplotlib.use("Qt5Agg")  # Use the PyQt5 backend for Matplotlib
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QVBoxLayout, QWidget, QDoubleSpinBox, QLabel, QHBoxLayout
+    QApplication, QMainWindow, QVBoxLayout, QWidget, QDoubleSpinBox, QLabel, QHBoxLayout, QComboBox
 )
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -32,7 +32,7 @@ class AnimationWindow(QMainWindow):
         self.__init_animation_parameters()
         self.__setup_lables_limits()
 
-        self.current_generator = list(GENERATOR_MAP.values())[0]()
+        self.current_generator = list(GENERATOR_MAP.values())[0]()  # Default generator
 
         # Start animation
         self.animation = FuncAnimation(
@@ -54,6 +54,7 @@ class AnimationWindow(QMainWindow):
         control_layout = QHBoxLayout()
         layout.addLayout(control_layout)
         self.__add_b_controller(control_layout)
+        self.__add_generator_controller(control_layout)  # Add the generator controller
 
     def __add_b_controller(self, control_layout):
         control_layout.addWidget(QLabel("Frequency Multiplier (B):"))
@@ -64,8 +65,16 @@ class AnimationWindow(QMainWindow):
         self.b_input.valueChanged.connect(self.update_b)
         control_layout.addWidget(self.b_input)
 
+    def __add_generator_controller(self, control_layout):
+        """Add a dropdown to choose a generator from GENERATOR_MAP."""
+        control_layout.addWidget(QLabel("Select Generator:"))
+        self.generator_selector = QComboBox()
+        self.generator_selector.addItems(GENERATOR_MAP.keys())  # Add generator names
+        self.generator_selector.currentTextChanged.connect(self.update_generator)
+        control_layout.addWidget(self.generator_selector)
+
     def __setup_main_window(self):
-        self.setWindowTitle("Animated A*sin(Bx) with Input Control")
+        self.setWindowTitle("Animated Generator Selector with Input Control")
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         layout = QVBoxLayout()
@@ -77,6 +86,13 @@ class AnimationWindow(QMainWindow):
         self.B = value
         self.canvas.ax.set_title(f"A*sin({self.B:.1f}x)")
         self.canvas.draw()
+    
+    def update_generator(self, generator_name):
+        """Change the current generator based on the selected name."""
+        if generator_name in GENERATOR_MAP:
+            self.current_generator = GENERATOR_MAP[generator_name]()
+            self.canvas.ax.set_title(f"Generator: {generator_name}")
+            self.canvas.draw()
 
     def update_animation(self, i):
         """Update function for animation."""
