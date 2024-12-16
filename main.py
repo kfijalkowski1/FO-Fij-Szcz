@@ -118,7 +118,7 @@ class AnimationWindow(QMainWindow):
         control_layout.addWidget(self.generator_selector)
 
     def __setup_main_window(self):
-        self.setWindowTitle("Animated Generator Selector with Input Control")
+        self.setWindowTitle("Fala stojąca w strunie")
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         layout = QVBoxLayout()
@@ -140,7 +140,6 @@ class AnimationWindow(QMainWindow):
         self.L = value
         self.x = np.linspace(0, self.L, 500)
         self.canvas.ax.set_xlim(0, self.L)
-        self.canvas.ax.set_title(f"Length (L): {self.L:.1f} m")
         self.canvas.draw()
 
     def update_t(self, value):
