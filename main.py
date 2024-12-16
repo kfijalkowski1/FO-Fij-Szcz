@@ -138,6 +138,9 @@ class AnimationWindow(QMainWindow):
 
     def update_l(self, value):
         self.L = value
+        self.x = np.linspace(0, self.L, 500)
+        self.canvas.ax.set_xlim(0, self.L)
+        self.canvas.ax.set_title(f"Length (L): {self.L:.1f} m")
         self.canvas.draw()
 
     def update_t(self, value):
