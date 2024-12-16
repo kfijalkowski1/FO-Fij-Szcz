@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import matplotlib
 
-from phisics_functions import GENERATOR_MAP  # Ensure GENERATOR_MAP is properly imported
+from physic_functions import GENERATOR_MAP  # Ensure GENERATOR_MAP is properly imported
 
 matplotlib.use("Qt5Agg")  # Use the PyQt5 backend for Matplotlib
 from PyQt5.QtWidgets import (
@@ -40,13 +40,13 @@ class AnimationWindow(QMainWindow):
         )
 
     def __setup_lables_limits(self):
-        self.canvas.ax.set_xlim(0, 10)
+        self.canvas.ax.set_xlim(0, 20)
         self.canvas.ax.set_ylim(-2.5, 2.5)
         self.canvas.ax.set_xlabel("X")
-        self.canvas.ax.set_ylabel("Y = A * sin(Bx)")
+        self.canvas.ax.set_ylabel("Y")
 
     def __init_animation_parameters(self):
-        self.x = np.linspace(0, 10, 500)
+        self.x = np.linspace(0, 20, 500)
         self.B = self.b_input.value()
         self.line, = self.canvas.ax.plot([], [], 'r-', lw=2)
 
@@ -81,10 +81,13 @@ class AnimationWindow(QMainWindow):
         central_widget.setLayout(layout)
         return layout
 
+    def _get_formula(self):
+        return self.current_generator.get_formula().format(k=(self.B * np.pi) / self.current_generator.get_length(), omega=2 * np.pi * self.B)
+
     def update_b(self, value):
         """Update B and redraw the plot."""
         self.B = value
-        self.canvas.ax.set_title(f"A*sin({self.B:.1f}x)")
+        self.canvas.ax.set_title(self._get_formula())
         self.canvas.draw()
     
     def update_generator(self, generator_name):
