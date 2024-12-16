@@ -21,7 +21,7 @@ class StandingWaveFixedBothEndsGenerator:
     A_MAX = 2.5
     LENGTH = 2 * np.pi
 
-    def generate_y(self, x: ndarray[np.floating], t: int, b: int) -> ndarray[np.floating]:
+    def generate_y(self, x: ndarray[np.floating], t: int, a: int, n: float, l: float, T: float, m: float) -> ndarray[np.floating]:
         """
         Calculate the value of A*sin(Bx)*cos(wt) for a standing wave.
         :param x: array with current x values
@@ -29,11 +29,13 @@ class StandingWaveFixedBothEndsGenerator:
         :param b: frequency multiplier
         :return: y values at given x and time
         """
+        print(f"Param states: a={a}, n={n}, l={l}, T={T}, m={m}") # TODO remove (usuń jak dodasz już tą fizyczną logikę)
+
         a = self.A_MIN# + (self.A_MAX - self.A_MIN) * (t / 99)
 
-        k = (b * np.pi) / self.LENGTH
+        k = (a * np.pi) / self.LENGTH
 
-        omega = 2 * np.pi * b
+        omega = 2 * np.pi * a
 
         y = a * np.sin(k * x) * np.cos(omega * t)
         return y
