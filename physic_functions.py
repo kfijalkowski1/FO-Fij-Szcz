@@ -21,7 +21,7 @@ class StandingWaveFixedBothEndsGenerator:
     A_MAX = 2.5
     LENGTH = 2 * np.pi
 
-    def generate_y(self, x: ndarray[np.floating], t: int, a: int, n: float, l: float, T: float, m: float) -> ndarray[np.floating]:
+    def generate_y(self, x: ndarray[np.floating], t: int, a: int, n: float, l: float, v: float) -> ndarray[np.floating]:
         """
         Calculate the value of A*sin(Bx)*cos(wt) for a standing wave.
         :param x: array with current x values
@@ -29,14 +29,11 @@ class StandingWaveFixedBothEndsGenerator:
         :param a: amplitude
         :param n: harmonic number
         :param l: length of string
-        :param T: tension of string
-        :param m: mass density
+        :param v: speed of wave
         :return: y values at given x and time
         """
-        v = np.sqrt(T/m)
-        omega = np.pi * n * v / l
-        k = np.pi * n / l
-
+        k = n * np.pi / l
+        omega = v * k
         return a * np.sin(k * x) * np.cos(omega * t)
 
     @staticmethod

@@ -40,19 +40,18 @@ class AnimationWindow(QMainWindow):
         )
 
     def __setup_lables_limits(self):
-        self.canvas.ax.set_xlim(0, 20)
+        self.canvas.ax.set_xlim(0, self.L)
         self.canvas.ax.set_ylim(-2.5, 2.5)
         self.canvas.ax.set_xlabel("X")
         self.canvas.ax.set_ylabel("Y")
 
     def __init_animation_parameters(self):
-        self.x = np.linspace(0, 20, 500)
         self.A = self.a_input.value() # Amplitude
         self.N = self.n_input.value() # Harmonic number
         self.L = self.l_input.value() # Length
-        self.T = self.t_input.value() # Tension
-        self.M = self.m_input.value() # Mass
+        self.V = self.v_input.value() # Speed
         self.line, = self.canvas.ax.plot([], [], 'r-', lw=2)
+        self.x = np.linspace(0, self.L, 500)
 
     def __add_controls(self, layout):
         control_layout = QHBoxLayout()
@@ -60,15 +59,14 @@ class AnimationWindow(QMainWindow):
         self.__add_a_controller(control_layout)
         self.__add_n_controller(control_layout)
         self.__add_l_controller(control_layout)
-        self.__add_t_controller(control_layout)
-        self.__add_m_controller(control_layout)
+        self.__add_v_controller(control_layout)
         self.__add_generator_controller(control_layout)  # Add the generator controller
 
     def __add_n_controller(self, control_layout):
         control_layout.addWidget(QLabel("Harmonic number:"))
         self.n_input = QDoubleSpinBox()
         self.n_input.setRange(1, 10)
-        self.n_input.setSingleStep(0.1)
+        self.n_input.setSingleStep(1)
         self.n_input.setValue(1)
         self.n_input.valueChanged.connect(self.update_n)
         control_layout.addWidget(self.n_input)
@@ -87,27 +85,18 @@ class AnimationWindow(QMainWindow):
         self.l_input = QDoubleSpinBox()
         self.l_input.setRange(0.1, 10.0)  # Set range for A
         self.l_input.setSingleStep(0.1)
-        self.l_input.setValue(4.0)  # Default A value
+        self.l_input.setValue(2)  # Default A value
         self.l_input.valueChanged.connect(self.update_l)
         control_layout.addWidget(self.l_input)
 
-    def __add_t_controller(self, control_layout):
-        control_layout.addWidget(QLabel("Tension(kg/m):"))
-        self.t_input = QDoubleSpinBox()
-        self.t_input.setRange(1, 500)
-        self.t_input.setSingleStep(5)
-        self.t_input.setValue(100)
-        self.t_input.valueChanged.connect(self.update_t)
-        control_layout.addWidget(self.t_input)
-
-    def __add_m_controller(self, control_layout):
-        control_layout.addWidget(QLabel("Linear mass density(kg):"))
-        self.m_input = QDoubleSpinBox()
-        self.m_input.setRange(0.1, 10.0)
-        self.m_input.setSingleStep(0.1)
-        self.m_input.setValue(4.0)
-        self.m_input.valueChanged.connect(self.update_m)
-        control_layout.addWidget(self.m_input)
+    def __add_v_controller(self, control_layout):
+        control_layout.addWidget(QLabel("Speed(m/s):"))
+        self.v_input = QDoubleSpinBox()
+        self.v_input.setRange(0.1, 5)
+        self.v_input.setSingleStep(0.1)
+        self.v_input.setValue(0.5)
+        self.v_input.valueChanged.connect(self.update_v)
+        control_layout.addWidget(self.v_input)
 
     def __add_generator_controller(self, control_layout):
         """Add a dropdown to choose a generator from GENERATOR_MAP."""
@@ -125,9 +114,6 @@ class AnimationWindow(QMainWindow):
         central_widget.setLayout(layout)
         return layout
 
-    def _get_formula(self):
-        return self.current_generator.get_formula().format(k=(self.B * np.pi) / self.current_generator.get_length(), omega=2 * np.pi * self.B)
-
     def update_a(self, value):
         self.A = value
         self.canvas.draw()
@@ -142,12 +128,8 @@ class AnimationWindow(QMainWindow):
         self.canvas.ax.set_xlim(0, self.L)
         self.canvas.draw()
 
-    def update_t(self, value):
-        self.T = value
-        self.canvas.draw()
-
-    def update_m(self, value):
-        self.M = value
+    def update_v(self, value):
+        self.V = value
         self.canvas.draw()
     
     def update_generator(self, generator_name):
@@ -159,7 +141,7 @@ class AnimationWindow(QMainWindow):
 
     def update_animation(self, i):
         """Update function for animation."""
-        y = self.current_generator.generate_y(self.x, i, self.A, self.N, self.L, self.T, self.M)
+        y = self.current_generator.generate_y(self.x, i, self.A, self.N, self.L, self.V)
         self.line.set_data(self.x, y)
         return self.line,
 
