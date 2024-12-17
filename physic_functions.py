@@ -17,10 +17,6 @@ class FunctionGenerator(ABC):
 
 
 class StandingWaveFixedBothEndsGenerator:
-    A_MIN = 0.5
-    A_MAX = 2.5
-    LENGTH = 2 * np.pi
-
     def generate_y(self, x: ndarray[np.floating], t: int, a: int, n: float, l: float, v: float) -> ndarray[np.floating]:
         """
         Calculate the value of A*sin(Bx)*cos(wt) for a standing wave.

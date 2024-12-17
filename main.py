@@ -83,9 +83,9 @@ class AnimationWindow(QMainWindow):
     def __add_l_controller(self, control_layout):
         control_layout.addWidget(QLabel("Length(m):"))
         self.l_input = QDoubleSpinBox()
-        self.l_input.setRange(0.1, 10.0)  # Set range for A
-        self.l_input.setSingleStep(0.1)
-        self.l_input.setValue(2)  # Default A value
+        self.l_input.setRange(1, 30.0)  # Set range for A
+        self.l_input.setSingleStep(1)
+        self.l_input.setValue(5)  # Default A value
         self.l_input.valueChanged.connect(self.update_l)
         control_layout.addWidget(self.l_input)
 
