@@ -26,19 +26,18 @@ class StandingWaveFixedBothEndsGenerator:
         Calculate the value of A*sin(Bx)*cos(wt) for a standing wave.
         :param x: array with current x values
         :param t: current time
-        :param b: frequency multiplier
+        :param a: amplitude
+        :param n: harmonic number
+        :param l: length of string
+        :param T: tension of string
+        :param m: mass density
         :return: y values at given x and time
         """
-        print(f"Param states: a={a}, n={n}, l={l}, T={T}, m={m}") # TODO remove (usuń jak dodasz już tą fizyczną logikę)
+        v = np.sqrt(T/m)
+        omega = np.pi * n * v / l
+        k = np.pi * n / l
 
-        a = self.A_MIN# + (self.A_MAX - self.A_MIN) * (t / 99)
-
-        k = (a * np.pi) / self.LENGTH
-
-        omega = 2 * np.pi * a
-
-        y = a * np.sin(k * x) * np.cos(omega * t)
-        return y
+        return a * np.sin(k * x) * np.cos(omega * t)
 
     @staticmethod
     def get_formula():

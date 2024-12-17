@@ -36,7 +36,7 @@ class AnimationWindow(QMainWindow):
 
         # Start animation
         self.animation = FuncAnimation(
-            self.canvas.fig, self.update_animation, frames=100, interval=50, blit=True
+            self.canvas.fig, self.update_animation, frames=1000, interval=50, blit=True
         )
 
     def __setup_lables_limits(self):
@@ -160,7 +160,7 @@ class AnimationWindow(QMainWindow):
     def update_animation(self, i):
         """Update function for animation."""
         y = self.current_generator.generate_y(self.x, i, self.A, self.N, self.L, self.T, self.M)
-        self.line.set_data(self.x, y)    # Update line data
+        self.line.set_data(self.x, y)
         return self.line,
 
 # Main entry point
