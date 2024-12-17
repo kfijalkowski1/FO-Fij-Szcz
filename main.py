@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import matplotlib
 
-from physic_functions import GENERATOR_MAP  # Ensure GENERATOR_MAP is properly imported
+from physic_functions import GENERATOR_MAP
 
 matplotlib.use("Qt5Agg")  # Use the PyQt5 backend for Matplotlib
 from PyQt5.QtWidgets import (
@@ -15,7 +15,6 @@ from matplotlib.animation import FuncAnimation
 
 class MplCanvas(FigureCanvas):
     def __init__(self, parent=None, width=5, height=4, dpi=100):
-        # Initialize a Matplotlib Figure and Axes
         self.fig = Figure(figsize=(width, height), dpi=dpi)
         self.ax = self.fig.add_subplot(111)
         super(MplCanvas, self).__init__(self.fig)
@@ -60,7 +59,7 @@ class AnimationWindow(QMainWindow):
         self.__add_n_controller(control_layout)
         self.__add_l_controller(control_layout)
         self.__add_v_controller(control_layout)
-        self.__add_generator_controller(control_layout)  # Add the generator controller
+        self.__add_generator_controller(control_layout)
 
     def __add_n_controller(self, control_layout):
         control_layout.addWidget(QLabel("Harmonic number:"))
@@ -102,7 +101,7 @@ class AnimationWindow(QMainWindow):
         """Add a dropdown to choose a generator from GENERATOR_MAP."""
         control_layout.addWidget(QLabel("Select Generator:"))
         self.generator_selector = QComboBox()
-        self.generator_selector.addItems(GENERATOR_MAP.keys())  # Add generator names
+        self.generator_selector.addItems(GENERATOR_MAP.keys())
         self.generator_selector.currentTextChanged.connect(self.update_generator)
         control_layout.addWidget(self.generator_selector)
 
