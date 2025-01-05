@@ -32,6 +32,7 @@ class AnimationWindow(QMainWindow):
         self.__setup_lables_limits()
 
         self.current_generator = list(GENERATOR_MAP.values())[0]()  # Default generator
+        self.canvas.ax.set_title(self.current_generator.get_formula())
 
         # Start animation
         self.animation = FuncAnimation(
@@ -135,7 +136,7 @@ class AnimationWindow(QMainWindow):
         """Change the current generator based on the selected name."""
         if generator_name in GENERATOR_MAP:
             self.current_generator = GENERATOR_MAP[generator_name]()
-            self.canvas.ax.set_title(f"Generator: {generator_name}")
+            self.canvas.ax.set_title(self.current_generator.get_formula())
             self.canvas.draw()
 
     def update_animation(self, i):
