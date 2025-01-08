@@ -59,11 +59,11 @@ class StandingWaveNotFixedGenerator(FunctionGenerator):
         """
         k = n * np.pi / l
         omega = v * k
-        return a * (np.sin(k * x) + np.cos(k * x)) * np.cos(omega * t)
+        return 2*a*np.sin(((2 * np.pi * x)/l) - omega*t) * np.cos(omega * t)
 
     @staticmethod
     def get_formula():
-        return "A*[sin(kx) + cos(kx)]*cos(ωt)"
+        return "2*A*sin(2*pi*x/L)*cos(ωt)"
 
 
 # TODO update generator map after adding new generator
