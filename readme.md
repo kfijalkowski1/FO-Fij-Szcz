@@ -29,7 +29,7 @@ Aby uruchomić program należy posiadać środowisko z Pythonem w wersji 3.11 lu
 Najpierw należy zainstalować potrzebne paczki za pomocą komendy `pip install -r requirements.txt`.
 Następnie należy uruchomić plik `main.py` za pomocą komendy `python main.py`.
 
-Po uruchomieniu programu wyświetla nam się wizualizacja fali, którą możemy edytować w czasie żeczywistym za pomocą pól na dole. Jesteśmy w stanie również wybrać typ generowanej fali.
+Po uruchomieniu programu wyświetla nam się wizualizacja fali. Na górze okna widoczny jest wzór wybranej w danej chwili fali. W czasie rzeczywistym można modyfikować atrybuty tej fali za pomocą zmiennych na dole okna. Na dole po prawej stronie znajduje się lista dostępnych modeli fal.
 
 ### Rodzaje fal
 W ramach niniejszego projektu zostały zaprojektowane trzy modele fal stojących
