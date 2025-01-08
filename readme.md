@@ -18,16 +18,18 @@ Kolejne typy fal mają następujące wzory:
 - Fala zaczepiona na jednym końcu: `y(x, t) = A*sin(((2n+1)πx)/(2L))*cos(ωt)`
 - Fala niezaczepiona: `y(x, t) = 2*A*sin(2*pi*x/L)*cos(ωt)`
 
+## Implementacja
+Implementacja została podzielona na dwa pliki:
+- `main.py` - plik zawierający kod definiujący działanie interfejsu użytkownika zaimplementowanego w PyQt5 z użyciem matplotlib-a
+- `physic_functions.py` - plik zawierający funkcje matematyczne potrzebne do symulacji fali stojącej
+
+
 ## Uruchomienie
 Aby uruchomić program należy posiadać środowisko z Pythonem w wersji 3.11 lub wyższej. 
 Najpierw należy zainstalować potrzebne paczki za pomocą komendy `pip install -r requirements.txt`.
 Następnie należy uruchomić plik `main.py` za pomocą komendy `python main.py`.
 
-
-## Implementacja
-Implementacja została podzielona na dwa pliki:
-- `main.py` - plik zawierający kod definiujący działanie interfejsu użytkownika zaimplementowanego w PyQt5
-- `physic_functions.py` - plik zawierający funkcje matematyczne potrzebne do symulacji fali stojącej
+Po uruchomieniu programu wyświetla nam się wizualizacja fali, którą możemy edytować w czasie żeczywistym za pomocą pól na dole. Jesteśmy w stanie również wybrać typ generowanej fali.
 
 ### Rodzaje fal
 W ramach niniejszego projektu zostały zaprojektowane trzy modele fal stojących
