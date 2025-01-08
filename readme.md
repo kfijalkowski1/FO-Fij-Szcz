@@ -14,8 +14,8 @@ Dla każdego z tych typów fal został zdefiniowany wzór matematyczny wyliczany
 - l - długość struny
 - v - prędkość fali
 Kolejne typy fal mają następujące wzory:
-- Fala zaczepiona po obu końcach: `y(x, t) = A*sin(kx)*cos(ωt)`
-- Fala zaczepiona po jednym końcu: `y(x, t) = A*sin(((2n+1)πx)/(2L))*cos(ωt)`
+- Fala zaczepiona na obu końcach: `y(x, t) = A*sin(kx)*cos(ωt)`
+- Fala zaczepiona na jednym końcu: `y(x, t) = A*sin(((2n+1)πx)/(2L))*cos(ωt)`
 - Fala niezaczepiona: `y(x, t) = 2*A*sin(2*pi*x/L)*cos(ωt)`
 
 ## Uruchomienie
@@ -28,3 +28,15 @@ Następnie należy uruchomić plik `main.py` za pomocą komendy `python main.py`
 Implementacja została podzielona na dwa pliki:
 - `main.py` - plik zawierający kod definiujący działanie interfejsu użytkownika zaimplementowanego w PyQt5
 - `physic_functions.py` - plik zawierający funkcje matematyczne potrzebne do symulacji fali stojącej
+
+### Rodzaje fal
+W ramach niniejszego projektu zostały zaprojektowane trzy modele fal stojących
+
+#### Fala stojąca zaczepiona na obydwu końcach
+![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_both_ends.gif)
+
+#### Fala stojąca zaczepiona na jednym końcu
+![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_one_end.gif)
+
+#### Fala stojąca która nie jest zaczepiona
+![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_not_fixed.gif)
