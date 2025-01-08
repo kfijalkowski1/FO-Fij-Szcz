@@ -33,10 +33,10 @@ Implementacja została podzielona na dwa pliki:
 W ramach niniejszego projektu zostały zaprojektowane trzy modele fal stojących
 
 #### Fala stojąca zaczepiona na obydwu końcach
-![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_both_ends.gif)
+![Fala stojąca zaczepiona na obydwu końcach](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_both_ends.gif)
 
 #### Fala stojąca zaczepiona na jednym końcu
-![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_one_end.gif)
+![Fala stojąca zaczepiona na jednym końcu](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_fixed_on_one_end.gif)
 
 #### Fala stojąca która nie jest zaczepiona
-![](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_not_fixed.gif)
+![Fala stojąca niezaczepiona](https://github.com/kfijalkowski1/FO-Fij-Szcz/documentation/standing_wave_not_fixed.gif)
