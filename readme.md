@@ -27,7 +27,7 @@ Implementacja została podzielona na dwa pliki:
 - Pycharm - w celu wygodnego pisania kodu
 - Github - repozytorium
 - OpenAI chat w celu przyspieszenia procesu kodowania, przykładowe zapytania:
-  - "Jak połączyć animowany kod używający matloptlib <kod z matplotlib-em> z kodem wyświetlającym okno w QT <kod z oknem w QT>"
+  - "Jak połączyć animowany kod używający matloptlib `kod z matplotlib-em` z kodem wyświetlającym okno w QT `kod z oknem w QT`"
   - Niestety również jeden z wzorów fizycznych został wygenerowany duży problem z odnalezieniem go w sieci. Jest to wzór na falę zaczepioną o jednym końcu. Został on sprawdzony empirycznie oraz przeanalizowany z wynikami pozytywnymi, tak więc został użyty.
 
 ## Uruchomienie
