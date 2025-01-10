@@ -6,6 +6,7 @@ Zadanie polegało na symulacji fali stojącej w strunie. Zasymulowane zostały 3
 - Fale zaczepione po obu końcach
 - Fala zaczepiona po jednym końcu
 - Fala niezaczepiona
+
 Dla każdego z tych typów fal został zdefiniowany wzór matematyczny wyliczany na podstawie:
 - x - położenie punktu na strunie
 - t - czas
@@ -28,7 +29,7 @@ Implementacja została podzielona na dwa pliki:
 - Github - repozytorium
 - OpenAI chat w celu przyspieszenia procesu kodowania, przykładowe zapytania:
   - "Jak połączyć animowany kod używający matloptlib `kod z matplotlib-em` z kodem wyświetlającym okno w QT `kod z oknem w QT`"
-  - Niestety również jeden z wzorów fizycznych został wygenerowany duży problem z odnalezieniem go w sieci. Jest to wzór na falę zaczepioną o jednym końcu. Został on sprawdzony empirycznie oraz przeanalizowany z wynikami pozytywnymi, tak więc został użyty.
+  - Za pomocą chatgpt został wygenerowany wzór na fale stojąca w strunie zaczepioną na jednym końcu, ponieważ nie znaleźliśmy w sieci dobrego źródła. Wzór ten został przez nas przeanalizowany i empirycznie sprawdzony.
 
 ## Uruchomienie
 Aby uruchomić program należy posiadać środowisko z Pythonem w wersji 3.11 lub wyższej. 
